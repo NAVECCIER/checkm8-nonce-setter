@@ -1,5 +1,4 @@
 #!/bin/bash
-rm -rf ipwndfu_public
 rm -rf ipwndfu
 
 clear
@@ -100,6 +99,13 @@ if [ $? == 0 ]; then
    echo $device
 fi
 
+files/igetnonce | grep 'j71bap' &> /dev/null
+if [ $? == 0 ]; then
+   echo "Supported Device"
+   device="iPad7,5"
+   echo $device
+fi
+
 files/igetnonce | grep 'j72ap' &> /dev/null
 if [ $? == 0 ]; then
    echo "Supported Device"
@@ -174,7 +180,6 @@ if [ $device == iPhone10,3 ] || [ $device == iPhone10,6 ]; then
     git clone https://github.com/MatthewPierson/ipwndfuA11
     cd ipwndfuA11
 else
-    git clone https://github.com/MatthewPierson/ipwndfu_public.git
     cd ipwndfu_public
 fi
 echo "Starting ipwndfu"
@@ -215,7 +220,7 @@ fi
 
 ./irecovery -f ibss."$device".img4
 
-if [ $device = iPhone6,1 ] || [ $device = iPhone6,2 ] || [ $device = iPad4,1 ] || [ $device = iPad4,2 ] || [ $device = iPad4,3 ] || [ $device = iPad4,4 ] || [ $device = iPad4,5 ] || [ $device = iPad4,6 ] || [ $device = iPad4,7 ] || [ $device = iPad4,8 ] || [ $device = iPad4,9 ];
+if [ $device = iPhone6,1 ] || [ $device = iPhone6,2 ] || [ $device = iPad4,1 ] || [ $device = iPad4,2 ] || [ $device = iPad4,3 ] || [ $device = iPad4,4 ] || [ $device = iPad4,5 ] || [ $device = iPad4,6 ] || [ $device = iPad4,7 ] || [ $device = iPad4,8 ] || [ $device = iPad4,9 ] || [ $device = iPad7,5 ];
 then
     ./irecovery -f ibec."$device".img4
 fi
